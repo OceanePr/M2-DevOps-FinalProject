@@ -1,0 +1,18 @@
+# Ignorer les fichiers Terraform générés
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+
+# Ignorer les clés et fichiers sensibles
+*.pem
+
+# Ignorer les exécutables
+*.exe
+
+# Ignorer les fichiers de log et temporaires
+*.log
+*.tmp
+
+# Autres exclusions
+.DS_Store
+Thumbs.db

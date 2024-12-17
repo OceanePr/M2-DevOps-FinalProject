@@ -1,0 +1,31 @@
+- hosts: all
+  become: true
+  tasks:
+    - name: Update system
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install Docker and pip3
+      apt:
+        name:
+          - docker.io
+          - python3-pip
+        state: present
+
+    - name: Start and enable Docker service
+      service:
+        name: docker
+        state: started
+        enabled: true
+
+    - name: Install MLflow
+      pip:
+        name: mlflow
+        state: present
+
+    - name: Run MLflow server
+      command: >
+        nohup mlflow server --backend-store-uri sqlite:///mlflow.db --host 0.0.0.0 --port 5000 &
+      args:
+        creates: mlflow.db
